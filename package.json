@@ -1,0 +1,18 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "start:build": "tsc -w",
+    "start:run": "nodemon ./build/index.js",
+    "start": "yarn concurrently yarn:start:*"
+  },
+  "dependencies": {
+    "@types/node": "^12.6.8",
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.1",
+    "typescript": "^3.5.3"
+  }
+}
