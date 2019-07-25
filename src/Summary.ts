@@ -1,8 +1,8 @@
-interface Analyzer<T> {
+export interface Analyzer<T> {
   run(data: T): string;
 }
 
-interface OutputTarget {
+export interface OutputTarget {
   print(report: string): void;
 }
 

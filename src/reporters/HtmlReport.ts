@@ -1,7 +1,8 @@
 import { writeFileSync } from "fs";
+import { OutputTarget } from "../Summary";
 
-export class HtmlReport {
-  constructor(private path: string) {}
+export class HtmlReport implements OutputTarget {
+  constructor(private filename: string) {}
   print(report: string): void {
     const htmlTemplate = `
       <!DOCTYPE html>
@@ -17,6 +18,6 @@ export class HtmlReport {
         </body>
       </html>
     `;
-    writeFileSync(this.path, htmlTemplate);
+    writeFileSync(`./htmlReports/${this.filename}`, htmlTemplate);
   }
 }

@@ -1,6 +1,7 @@
+import { Analyzer } from "./../Summary";
 import { MatchData } from "../MatchData";
 
-export class AverageGoalsAnalysis {
+export class AverageGoalsAnalysis implements Analyzer<MatchData[]> {
   run(data: MatchData[]): string {
     const countOfGoals = data.reduce(
       (count: number, match: MatchData): number => {

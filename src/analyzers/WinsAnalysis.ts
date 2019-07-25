@@ -1,7 +1,8 @@
+import { Analyzer } from "./../Summary";
 import { MatchData } from "../MatchData";
 import { MatchResult } from "../MatchResult";
 
-export class WinsAnalysis {
+export class WinsAnalysis implements Analyzer<MatchData[]> {
   constructor(public team: string) {}
   run(data: MatchData[]): string {
     const countOfWins = data.reduce(
