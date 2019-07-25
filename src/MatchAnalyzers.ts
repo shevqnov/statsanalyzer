@@ -23,7 +23,7 @@ export class AverageGoalsAnalysis {
   run(data: MatchData[]): string {
     const countOfGoals = data.reduce(
       (count: number, match: MatchData): number => {
-        return match[4] + match[3];
+        return count + match[4] + match[3];
       },
       0
     );
