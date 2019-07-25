@@ -1,21 +1,19 @@
+import { ConsoleReport } from "./ConsoleReport";
+import { WinsAnalysis, AverageGoalsAnalysis } from "./MatchAnalyzers";
+import { Summary } from "./Summary";
+import { CSVFileReader } from "./CSVFileReader";
 import { MatchReader, MatchData } from "./MatchReader";
-import { MatchResult } from "./MatchResult";
 
-const reader = new MatchReader("football.csv");
-reader.read();
-const matches = reader.data;
+const csvFileReader = new CSVFileReader("football.csv");
+const reader = new MatchReader(csvFileReader);
+reader.load();
+const matches = reader.matches;
 
-const ArsenalWins = matches.reduce(
-  (count: number, match: MatchData): number => {
-    if (
-      (match[1] === "Arsenal" && match[5] === MatchResult.HomeWin) ||
-      (match[2] === "Arsenal" && match[5] === MatchResult.AwayWin)
-    ) {
-      return count + 1;
-    }
-    return count;
-  },
-  0
-);
+const winsAnalysis = new WinsAnalysis();
+const goalAnalysis = new AverageGoalsAnalysis();
+const consoleReport = new ConsoleReport();
+const winsSummary = new Summary<MatchData[]>(winsAnalysis, consoleReport);
+const goalsSummary = new Summary<MatchData[]>(goalAnalysis, consoleReport);
 
-console.log(ArsenalWins);
+goalsSummary.buildAndPrintReport(matches);
+winsSummary.buildAndPrintReport(matches);
