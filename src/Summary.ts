@@ -8,8 +8,8 @@ interface OutputTarget {
 
 export class Summary<T> {
   constructor(
-    public analyzer: Analyzer<T>,
-    public outputTarger: OutputTarget
+    private analyzer: Analyzer<T>,
+    private outputTarger: OutputTarget
   ) {}
   buildAndPrintReport(data: T) {
     this.outputTarger.print(this.analyzer.run(data));
